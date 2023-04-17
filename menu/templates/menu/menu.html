@@ -1,0 +1,37 @@
+<ul class="menu">
+    {% for item_level_0 in menu_items %}
+        {% if item_level_0.children %}
+        <li><span class="menu_caret{% if item_level_0.item_active_tree == True %} menu_caret__down{% endif %}"></span><a href="{{ item_level_0.url }}" {% if request.path == item_level_0.url %} class="link__active"{% endif %}>{{ item_level_0.name }}</a>
+            <ul class="menu_item__nested {% if item_level_0.item_active_tree == True %}menu_item__active{% endif %}">
+            {% for item_level_1 in item_level_0.children %}
+                {% if item_level_1.children %}
+                <li><span class="menu_caret{% if item_level_1.item_active_tree == True %} menu_caret__down{% endif %}"></span><a href="{{ item_level_1.url }}" {% if request.path == item_level_1.url %} class="link__active"{% endif %}>{{ item_level_1.name }}</a>
+                    <ul class="menu_item__nested {% if item_level_1.item_active_tree == True %}menu_item__active{% endif %}">
+                    {% for item_level_2 in item_level_1.children %}
+                    {% if item_level_2.children %}
+                        <li><span class="menu_caret{% if item_level_3.item_active_tree == True %} menu_caret__down{% endif %}"></span><a href="{{ item_level_2.url }}" {% if request.path == item_level_2.url %} class="link__active"{% endif %}>{{ item_level_2.name }}</a>
+                            <ul class="menu_item__nested {% if item_level_2.item_active_tree == True %}menu_item__active{% endif %}">
+                            {% for item_level_3 in item_level_2.children %}
+                                <li><a href="{{ item_level_3.url }}" {% if request.path == item_level_3.url %} class="link__active"{% endif %}>{{ item_level_3.name }}</a></li>
+                            {% endfor %}
+                            </ul>
+                        {% else %}
+                        <li><a href="{{ item_level_2.url }}"{% if request.path == item_level_2.url %} class="link__active"{% endif %}>{{ item_level_2.name }}</a>
+                        {% endif %}
+                        </li>
+                    {% endfor %}
+                    </ul>
+                {% else %}
+                <li><a href="{{ item_level_1.url }}" {% if request.path == item_level_1.url %} class="link__active"{% endif %}>{{ item_level_1.name }}</a>
+                {% endif %}
+                </li>
+            {% endfor %}
+            </ul>
+        {% else %}
+        <li><a href="{{ item_level_0.url }}" {% if request.path == item_level_0.url %} class="link__active"{% endif %}>{{ item_level_0.name }}</a>
+        {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+<p>{{ count }}</p>
+<p>{{ request.path }}</p>

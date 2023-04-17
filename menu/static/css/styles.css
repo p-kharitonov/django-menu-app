@@ -1,0 +1,44 @@
+ul,
+menu {
+    list-style-type: none;
+}
+
+.menu {
+    margin: 0;
+    padding: 0;
+}
+
+.menu a {
+    text-decoration: none;
+    color: black;
+}
+
+.menu_caret {
+    cursor: pointer;
+    user-select: none;
+}
+
+.menu_caret::before {
+    content: "\25B6";
+    color: black;
+    display: inline-block;
+    margin-right: 6px;
+}
+
+.menu_caret__down::before {
+    transform: rotate(90deg);
+}
+
+.menu_item__nested {
+    display: none;
+}
+
+.menu_item__active {
+    display: block;
+}
+
+.menu .link__active {
+    color: brown;
+    font-weight: 600;
+    text-decoration: underline;
+}
